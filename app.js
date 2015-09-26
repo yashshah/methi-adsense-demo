@@ -38,8 +38,6 @@ $(function(){
   $searchInput.on('keyup change', function(event) {
     event.preventDefault();
     var $input = $(this);
-    console.log($input.val())
-
     if ($input.val() && $input.val() !== prevQuery) {
       prevQuery = $input.val();
 
@@ -50,6 +48,8 @@ $(function(){
       // Refresh Methi results
       searchArticles(prevQuery);
     }
+
+    // Default the page when input is empty
     if(!$input.val()){
       $searchStatsContainer.html('');
       $resultContainer.html('<p class="bg-warning">Hint: Search for terms like  <strong>Ola Cabs</strong>, <strong>Hiring</strong>, <strong>Handicrafts</strong></p>');
@@ -86,24 +86,22 @@ $(function(){
       displayResults(response);
       displaySearchStats(response);
     }).on('error', function(error) {
-      console.log(error)
     })
   }
+  
   function displayResults(content) {
     var html = ''
-    
     if (content.hits.total > 0) {
       jQuery.map(content.hits.hits, function(hit) {
-        console.log(hit)
         html += '<p><a href="http://' + hit.fields.link.toString().slice(0, -10) +'" target="_blank">' + hit.highlight.title + '</p>'
       });
     }
     else {
       html = 'No results found';
     }
-
     $resultContainer.html(html);
   }
+
   function displaySearchStats(content) {
     var html = content.hits.total + ' articles <small>founds in <strong>' + content.took / 1000 + ' seconds</strong>';
     $searchStatsContainer.html(html);
