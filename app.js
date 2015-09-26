@@ -17,5 +17,12 @@ $(function(){
   };
 
   _googCsa('ads', pageOptions, adblock);
+  // Appbase Configuration
+  var appbase = new Appbase({
+    url: 'https://scalr.api.appbase.io',
+    appname: 'methi-yourstory',
+    username: 'uw3qB83pZ',
+    password: 'ac1a0fc1-e4eb-4344-9c0d-2c24c69fc91d'
+  });
 
 });
