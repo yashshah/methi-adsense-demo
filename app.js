@@ -50,6 +50,11 @@ $(function(){
       // Refresh Methi results
       searchArticles(prevQuery);
     }
+    if(!$input.val()){
+      $searchStatsContainer.html('');
+      $resultContainer.html('<p class="bg-warning">Hint: Search for terms like  <strong>Ola Cabs</strong>, <strong>Hiring</strong>, <strong>Handicrafts</strong></p>');
+      $adContainer.html('');
+    }
   });
 
   function searchArticles(query) {
